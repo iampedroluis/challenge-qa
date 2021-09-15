@@ -4,8 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84a124a3-92dd-4c07-914c-a68d35b1cc9e" name="Changes" comment="">
+    <list default="true" id="84a124a3-92dd-4c07-914c-a68d35b1cc9e" name="Changes" comment="# ----------------------------------------------------------------------&#10;#&#10;#   RECUERDA&#10;#&#10;#       * Separa el asunto del cuerpo con una línea en blanco&#10;#       * Limita el asunto a 50 caracteres&#10;#       * No termines el asunto con un punto (.)&#10;#       * Usa un tono imperativo en el asunto&#10;#       * Envuelve el cuerpo hasta 100 caracteres&#10;#       * Usa el cuerpo para explicar qué y por qué en lugar de cómo &#10;#&#10;# ------------------------------------------------------------------------&#10;#&#10;#   TABLA DE DE DESCRIPCION DE TIPO&#10;#&#10;#       feat        -&gt; DEBE usarse cuando un cambio confirmado agrega una nueva funcionalidad a la aplicación  o biblioteca&#10;#       fix         -&gt; DEBE usarse cuando un cambio confirmado representa una corrección de error para su aplicación&#10;#       docs        -&gt; Solo cambios en la documentación&#10;#       style       -&gt; Cambios que no afectan el propósito del código (espacios en blanco, formato, punto y coma faltantes, entro otros)&#10;#       refactor    -&gt; Un cambio de código que no corrige un error ni agrega una funcionalidad&#10;#       perf        -&gt; Un cambio de código que mejora el rendimiento&#10;#       test        -&gt; Agrega pruebas faltantes&#10;#       chore       -&gt; Cambios en el proceso de compilación o herramientas y bibliotecas auxiliares, como la generación de documentación&#10;#&#10;# ------------------------------------------------------------------------&#10;#&#10;# Ejemplo:&#10;#&#10;# tipo(contexto?): asunto&#10;#&#10;# cuerpo&#10;#&#10;# pie?">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/POM/amazon_home_po.py" beforeDir="false" afterPath="$PROJECT_DIR$/POM/amazon_home_po.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/POM/asserts_po.py" beforeDir="false" afterPath="$PROJECT_DIR$/POM/asserts_po.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/POM/buscar_google_po.py" beforeDir="false" afterPath="$PROJECT_DIR$/POM/buscar_google_po.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/POM/cerrar_sesion.py" beforeDir="false" afterPath="$PROJECT_DIR$/POM/cerrar_sesion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/POM/inicio_sesion_po.py" beforeDir="false" afterPath="$PROJECT_DIR$/POM/inicio_sesion_po.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/POM/producto_po.py" beforeDir="false" afterPath="$PROJECT_DIR$/POM/producto_po.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/POM/registro_po.py" beforeDir="false" afterPath="$PROJECT_DIR$/POM/registro_po.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/amazon.feature" beforeDir="false" afterPath="$PROJECT_DIR$/features/amazon.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/steps/steps.py" beforeDir="false" afterPath="$PROJECT_DIR$/features/steps/steps.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +30,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="GitToolBoxStore">
     <option name="recentBranches">
@@ -129,6 +146,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,16 +1,14 @@
-#importo las librerias a sutilizar
+#importo las librerias a utilizar
 from behave import *
 from selenium import webdriver
-import time
-#importo las clases de los POM
-from POM.buscar_google_po import BuscarGoogle
 from POM.amazon_home_po import *
+from POM.asserts_po import *
+# importo las clases de los POM
+from POM.buscar_google_po import BuscarGoogle
+from POM.cerrar_sesion import *
+from POM.inicio_sesion_po import *
 from POM.producto_po import *
 from POM.registro_po import *
-from POM.inicio_sesion_po import *
-from POM.cerrar_sesion import *
-from POM.asserts_po import *
-
 
 print("<--- CHALLENGE QA/QC -------->")
 
@@ -26,7 +24,7 @@ def acceso_a_internet(context):
 @when('el usuario busca en google amazon') #BUSCA GOOGLE
 def busca_amazon_en_google(context):
     context.buscar = BuscarGoogle(context.driver)
-    context.buscar.busqueda_google("Amazon.com") #Busco Google en el Buscador de Google
+    context.buscar.busqueda_google("Amazon") #Busco Google en el Buscador de Google
     time.sleep(3)
 
 
@@ -39,13 +37,13 @@ def ingresar_link_amazon(context):
 
 @then('puede ver la home de amazon') # HAGO UN ASSERT DEL TITULO DE LA PAGINA
 def home_amazon(context):
-    try:
-        assert 'Amazon.com. Gasta menos. Sonríe más.' in context.driver.title   #Hago un assert de el tituko de la pagina
-        print("Paso el test")
+    context.titulin = Asserts(context.driver)
+    context.titulin.titulo()
 
-    except Exception as e:
-        print("no es la pagina de amazon", format(e))
     time.sleep(5)
+
+
+
 
 #TEST CASE 2
 
@@ -71,14 +69,8 @@ def click_buscar(context):
 
 @then('se visualizan los resultados del producto buscado')
 def resultado_de_busqueda(context):
-    context.resultado = AmazonHome(context.driver)
-    try:
-        assert '"sudaderas de hombre champion"' in context.resultado.resultado_busqueda() #Assert del resultado de la busqueda
-        print("Paso el test")
-
-    except Exception as e:
-        print("no encontro resultado", format(e))
-    time.sleep(5)
+    context.resultado = Asserts(context.driver)
+    context.resultado.resultado_busqueda()
 
 
 # TEST CASE 3
@@ -86,25 +78,20 @@ def resultado_de_busqueda(context):
 @given('haber seleccionado un producto')
 def producto(context):
     context.driver = webdriver.Chrome(executable_path="/home/iampedroluisg/Escritorio/chromedriver")
-    context.driver.get("https://cutt.ly/VWHYmLx") #Utilizo acortadores de URL por ser el link muy largo
-
+    context.driver.get("https://www.amazon.com/gp/product/B08BX5SWGX/ref=twister_dp_update?ie=UTF8&psc=1&redirect=true") #Utilizo acortadores de URL por ser el link muy largo
+    time.sleep(3)
 
 @when('el usuario selecciona otro color disponible')
 def seleccion_color(context):
     context.click_color = ProductoAmazon(context.driver)
-    context.click_color.cambio_color() #hago click en el cambio de color
-
+    context.click_color.cambio_color()
 
 @then('Se visualiza el mismo producto con otro color')
 def resultado_color(context):
-    context.resultado = ProductoAmazon(context.driver)
-    try:
-        assert "Mache Azul-586506" in context.resultado.resultado_color()  #Assert del resultado del cambio de color
-        print("Paso el test")
+    context.resultado = Asserts(context.driver)
+    context.resultado.resultado_color()
+    time.sleep(3)
 
-    except Exception as e:
-        print("no es el color", format(e))
-    time.sleep(5)
 
 #TEST CASE 4
 
@@ -118,19 +105,14 @@ def lista_desplegable(context):
 @when('selecciona el tamaño deseado') #Seleccion de talla
 def talla(context):
     context.talla_s = ProductoAmazon(context.driver)
-    context.talla_s.tamano_s()#selecciona tamaño s
+    context.talla_s.tamano_m()#selecciona tamaño m
 
 
 @then('se visualiza el producto con el talle deseado') #Assert Resultado
 def comprueba_tamano(context):
-    context.producto_s = ProductoAmazon(context.driver)
-    try:
-        assert "S" in context.producto_s.resultado_talla()
-        print("Paso el test")
+    context.resultado = Asserts(context.driver)
+    context.resultado.resultado_talla()
 
-    except Exception as e:
-        print("no es el color", format(e))
-    time.sleep(5)
 
 #TEST CASE 5
 
@@ -167,14 +149,8 @@ def click_continuar(context):
 
 @then('Se visualiza el cambio de locacion')
 def cambiodecodigoP(context):
-    context.resultadocodigoP = AmazonHome(context.driver)
-    try:
-        assert "Miami 33101‌" in context.resultadocodigoP.resultado_codigoPstal()  #Assert si cambio el codigo postal
-        print("Paso el test")
-
-    except Exception as e:
-        print("no es el codigo postal", format(e))
-    time.sleep(5)
+    context.resultadocodigoP = Asserts(context.driver)
+    context.resultadocodigoP.resultado_codigoPostal()
 
 #TEST CASE 6
 
@@ -186,7 +162,7 @@ def producto(context):
     context.lista_talla = ProductoAmazon(context.driver)
     context.lista_talla.selecotor_tamano()#Click lista desplegable
     context.talla_s = ProductoAmazon(context.driver)
-    context.talla_s.tamano_s()#selecciona tamaño s
+    context.talla_s.tamano_m()#selecciona tamaño m
     time.sleep(5)
     #Coloco los pasos de seleccionar el tamaño ya que el link tiene el color establecido
 
@@ -199,14 +175,9 @@ def add_carrito(context):
 
 @then('se agrega el producto en el carrito')
 def producto_agregado(context):
-    context.carrito_producto = ProductoAmazon(context.driver)
-    try:
-        assert "1" in context.carrito_producto.resultado_carrito() #Assert que tengo un producto en el carrito
-        print("Paso el test")
+    context.carrito_producto = Asserts(context.driver)
+    context.carrito_producto.resultado_carrito_con_producto()
 
-    except Exception as e:
-        print("no es el codigo postal", format(e))
-    time.sleep(5)
 
     #TEST CASE 7
 
@@ -217,10 +188,10 @@ def item_carrito(context):
     context.lista_talla = ProductoAmazon(context.driver)
     context.lista_talla.selecotor_tamano()#Click lista desplegable
     context.talla_s = ProductoAmazon(context.driver)
-    context.talla_s.tamano_s()#selecciona tamaño s
-    time.sleep(5)
+    context.talla_s.tamano_m()#selecciona tamaño m
+    time.sleep(3)
     context.agregar = ProductoAmazon(context.driver)
-    context.agregar.agregar_al_carrito()
+    context.agregar.agregar_al_carrito() #click en agregar al carrito
     time.sleep(5)
 
 
@@ -238,14 +209,8 @@ def eliminar_carrito(context):
 
 @then('el carrito aparece vacio')
 def assert_carrito(context):
-    context.carrito_eliminado = ProductoAmazon(context.driver)
-    try:
-        assert "0" in context.carrito_eliminado.resultado_carrito() #Assert que el carrito esta vacio
-        print("Paso el test")
-
-    except Exception as e:
-        print("no es el codigo postal", format(e))
-    time.sleep(5)
+    context.carrito_eliminado = Asserts(context.driver)
+    context.carrito_eliminado.resultado_carrito_sin_producto()
 
 # TEST CASE  8
 
@@ -281,13 +246,8 @@ def click_crearC(context): #BOTON CREAR CUENTA
 
 @then('le envia un codigo de verificacion de email')
 def confirm_envio_mail(context):
-    context.confirmo_mail = Registro(context.driver)
-    try:
-        assert "Verificar dirección de correo electrónico" in context.confirmo_mail.envia_mail()  #Assert si cambio el codigo postal
-        print("Paso el test")
-
-    except Exception as e:
-        print("no es el codigo postal", format(e))
+    context.confirmo_mail = Asserts(context.driver)
+    context.confirmo_mail.resultado_envia_mail()
     time.sleep(5)
 
 #TEST CASE 9
@@ -320,13 +280,8 @@ def click_inicioSesion(context):
     time.sleep(5)
 @then('Se muestra la pagina Home de Amazon')
 def amazon_home(context):
-    try:
-        assert 'Amazon.com. Gasta menos. Sonríe más.' in context.driver.title   #Hago un assert de el tituko de la pagina
-        print("Paso el test")
-
-    except Exception as e:
-        print("no es la pagina de amazon", format(e))
-    time.sleep(5)
+    context.titulin = Asserts(context.driver)
+    context.titulin.titulo()
 
 # TEST CASE 10
 
@@ -360,14 +315,10 @@ def sboton_salir(context):
 
 @then('la cuenta se deslogea')
 def sesion_cerrada(context):
-    context.sesion_fuera = CerrarSesion(context.driver)
-    try:
-        assert "Sign-In" in context.sesion_fuera.sesion_out()
-        print("Paso el test")
+    context.sesion_fuera = Asserts(context.driver)
+    context.sesion_fuera.sesion_out()
 
-    except Exception as e:
-        print("no es el color", format(e))
-    time.sleep(5)
+
 
 #TEST CASES ALTERNOS
 
@@ -404,13 +355,7 @@ def click_crear(context):
 @then('no le permite registrar la cuenta de amazon')
 def assersion_nombre(context):
     context.assert_name = Asserts(context.driver)
-    try:
-        assert "Introduce tu nombre" in context.assert_name.alertname() #Assert que tengo un producto en el carrito
-        print("Paso el test")
-
-    except Exception as e:
-        print("Ingreso el nombre", format(e))
-    time.sleep(5)
+    context.assert_name.alertname()
 
 #TEST CASE ALTERNO 2
 
@@ -448,13 +393,7 @@ def crear_cuental(context):
 @then('no permite registrar la cuenta de amazon')
 def alert_email(context):
     context.assert_mail = Asserts(context.driver)
-    try:
-        assert "Introduce tu nombre" in context.assert_mail.alrtmail() #Assert que tengo un producto en el carrito
-        print("Paso el test")
-
-    except Exception as e:
-        print("Ingreso el email", format(e))
-    time.sleep(5)
+    context.assert_mail.alertmail()
 
 # TEST CASE ALTERNO 3
 
@@ -482,12 +421,7 @@ def click_continue(context):
 @then(u'no le permite iniciar sesion')
 def assert_alert(context):
     context.assersion_is_name = Asserts(context.driver)
-    try:
-        assert "Enter your email or mobile phone number" in context.assersion_is_name.alertisnombre() #Assert que tengo un producto en el carrito
-        print("Paso el test")
-
-    except Exception as e:
-        print("Ingreso el email", format(e))
+    context.assersion_is_name.alertisnombre()
     time.sleep(5)
 
 #TEST CASE ALTERNO 4
@@ -521,13 +455,7 @@ def click_iniciarS(context):
 @then('no le permite ingresar a la seion')
 def alertaEnterpass(context):
     context.assersionpass = Asserts(context.driver)
-    try:
-        assert 'Enter your password' in context.assersionpass.alertaispass()   #Hago un assert de el tituko de la pagina
-        print("Paso el test")
-
-    except Exception as e:
-        print("ingreso session", format(e))
-    time.sleep(5)
+    context.assersionpass.alertaispass()
 
 # TEST CASE ALTERNO 5
 
@@ -559,10 +487,5 @@ def click_inicio(context):
 @then('no le permite iniciar session')
 def assersion_pass(context):
     context.assererrorpass = Asserts(context.driver)
-    try:
-        assert 'Your password is incorrect' in context.assererrorpass.alerta_pass()   #Hago un assert de el tituko de la pagina
-        print("Paso el test")
-
-    except Exception as e:
-        print("ingreso session", format(e))
+    context.assererrorpass.alerta_pass_incorrect()
     time.sleep(5)

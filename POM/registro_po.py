@@ -9,8 +9,7 @@ class Registro:
         self.passcheck_usuario_r_xpath = "//input[@id='ap_password_check']"
         #BOTON CREAR CUENTA AMAZON
         self.boton_crearC_xpath = "//input[@id='continue']"
-        #RESULTADO ENVIO MAIL
-        self.envio_mail_xpath = "//*[@id='verification-code-form']/div[4]/div[1]/h1"
+
 
     #COMPLETAR LOS DATOS
     def completar_nombre(self, dato):
@@ -18,25 +17,31 @@ class Registro:
         self.driver.find_element_by_xpath(self.nombre_usuario_r_xpath).click()
         self.driver.find_element_by_xpath(self.nombre_usuario_r_xpath).clear()
         self.driver.find_element_by_xpath(self.nombre_usuario_r_xpath).send_keys(dato)
-        #CORREO ELECTRONICO USUARIO
+
+
+    #CORREO ELECTRONICO USUARIO
     def completar_email(self, dato):
         self.driver.find_element_by_xpath(self.email_usuario_r_xpath).click()
         self.driver.find_element_by_xpath(self.email_usuario_r_xpath).clear()
         self.driver.find_element_by_xpath(self.email_usuario_r_xpath).send_keys(dato)
-        #CONTRASEÑA USUARIO
+
+
+    #CONTRASEÑA USUARIO
     def completar_contrasena(self, dato):
         self.driver.find_element_by_xpath(self.pass_usuario_r_xpath).click()
         self.driver.find_element_by_xpath(self.pass_usuario_r_xpath).clear()
         self.driver.find_element_by_xpath(self.pass_usuario_r_xpath).send_keys(dato)
-        #CONFIRMACION CONTRASEÑA
+
+
+    #CONFIRMACION CONTRASEÑA
     def check_pass_usr(self, dato):
         self.driver.find_element_by_xpath(self.passcheck_usuario_r_xpath).click()
         self.driver.find_element_by_xpath(self.passcheck_usuario_r_xpath).clear()
         self.driver.find_element_by_xpath(self.passcheck_usuario_r_xpath).send_keys(dato)
+
+
     #CLICK BOTON CREAR CUENTA
 
     def click_boton_crearC(self):
         self.driver.find_element_by_xpath(self.boton_crearC_xpath).click()
-    #CONFIRMACION ENVIO DE MAIL
-    def envia_mail(self):
-        self.driver.find_element_by_xpath(self.envio_mail_xpath)
+

@@ -13,7 +13,7 @@ Feature: Pagina web de amazon
     Given Tener acceso a la pagina de amazon
     When  el escribe busca sudaderas de hombre champion en la barra de busqueda
     And   hace click en el boton buscar
-    Then  se visualizan los resultados del producto buscad
+    Then  se visualizan los resultados del producto buscado
 
   @tchp3
   Scenario: TC3 Cambiar color al producto
@@ -111,3 +111,5 @@ Feature: Pagina web de amazon
     When  el usuario completa los campos solicitados con la contraseña incorrecto
     And   presiona "Inicir Sesion"
     Then  no le permite iniciar session
+
+
