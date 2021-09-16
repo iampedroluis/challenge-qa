@@ -436,7 +436,7 @@ def sign_in(context):
 @when('el usuario no completa el campo contraseña')
 def campovaciopass(context):
     context.escribir_email = InicioSesion(context.driver)
-    context.escribir_email.escribirmail("pedroluisgutierrez96@gmail.com")
+    context.escribir_email.escribirmail("")#COLOCAR MAIL EN COMILLAS
     time.sleep(2)
     context.clickBoton_continuar = InicioSesion(context.driver)
     context.clickBoton_continuar.click_continuar_is()
@@ -469,12 +469,12 @@ def amazon_inicia_sesion(context):
 @when('el usuario completa los campos solicitados con la contraseña incorrecto')
 def error_pass(context):
     context.escribir_email = InicioSesion(context.driver)
-    context.escribir_email.escribirmail("pedroluisgutierrez96@gmail.com")
+    context.escribir_email.escribirmail("") #COLOCAR MAIL EN COMILLAS
     context.clickBoton_continuar = InicioSesion(context.driver)
     context.clickBoton_continuar.click_continuar_is()
     time.sleep(3)
     context.escribe_pass = InicioSesion(context.driver)
-    context.escribe_pass.escribircontrasena("errorpass")
+    context.escribe_pass.escribircontrasena("")#ESCRIBIR UNA CONRRASEÑA DISTINTA
 
 
 @when('presiona "Inicir Sesion"')
