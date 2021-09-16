@@ -225,16 +225,16 @@ def pagina_registro(context):
 def registro_usuario(context):
     #REGISTRO DE USUARIO
     context.nombre = Registro(context.driver)
-    context.nombre.completar_nombre("pedro")
+    context.nombre.completar_nombre("") #COLOCAR EL NOMBRE DENTRO DE LAS COMILLAS
     time.sleep(2)
     context.email = Registro(context.driver)
-    context.email.completar_email("pedroluisgutierrez96@gmail.com")
+    context.email.completar_email("") #COLOCAR EL MAIL DENTRO DE LAS COMILLAS
     time.sleep(2)
     context.contrasena = Registro(context.driver)
-    context.contrasena.completar_contrasena("pedroluis1234")
+    context.contrasena.completar_contrasena("") #COLOCAR LA PASSWORD DENTRO DE LAS COMILLAS
     time.sleep(2)
     context.check_pass = Registro(context.driver)
-    context.check_pass.check_pass_usr("pedroluis1234")
+    context.check_pass.check_pass_usr("") #COLOCAR LA PASSWORD DENTRO DE LAS COMILLAS
     time.sleep(5)
 
 
@@ -260,7 +260,7 @@ def pagina_iniciarSesion(context):
 @when('el usuario completa los campos solicitados')
 def campo_email(context):
     context.escribir_email = InicioSesion(context.driver)
-    context.escribir_email.escribirmail("pedroluisgutierrez96@gmail.com")
+    context.escribir_email.escribirmail("") #COLOCAR MAIL DENTRO DE LAS COMILLAS
     time.sleep(5)
 @when('le da click en "continuar"')
 def click_continuar(context):
@@ -270,7 +270,7 @@ def click_continuar(context):
 @when('completa el campo contraseña')
 def campo_contrasena(context):
     context.escribe_pass = InicioSesion(context.driver)
-    context.escribe_pass.escribircontrasena("95981419pedro")
+    context.escribe_pass.escribircontrasena("") #COLOCAR PASSWORD DENTRO DE LAS COMILLAS
     time.sleep(5)
 
 @when('le da click en iniciar sesion')
@@ -291,12 +291,12 @@ def usuario_logeado(context):
     context.driver.get("https://www.amazon.com/-/es/ap/signin?openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fcart%2Fview.html%2Fref%3Dnav_ya_signin%3Fapp-nav-type%3Dnone%26dc%3Ddf&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.assoc_handle=usflex&openid.mode=checkid_setup&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&")  # Acortador de URL
     time.sleep(3)
     context.escribir_email = InicioSesion(context.driver)
-    context.escribir_email.escribirmail("pedroluisgutierrez96@gmail.com")
+    context.escribir_email.escribirmail("") #COLOCAR MAIL DENTRO DE LAS COMILLAS
     context.clickBoton_continuar = InicioSesion(context.driver)
     context.clickBoton_continuar.click_continuar_is()
     time.sleep(3)
     context.escribe_pass = InicioSesion(context.driver)
-    context.escribe_pass.escribircontrasena("95981419pedro")
+    context.escribe_pass.escribircontrasena("") #COLOCAR DENTRO DE LAS COMILLAS LA PASSWORD
     context.clickBoton_iniciosesion = InicioSesion(context.driver)
     context.clickBoton_iniciosesion.click_boton_is()
     time.sleep(3)
@@ -335,13 +335,13 @@ def dato_imcompleto_nombre(context):
     context.nombre.completar_nombre("")
     time.sleep(2)
     context.email = Registro(context.driver)
-    context.email.completar_email("pedroluisgutierrez96@gmail.com")
+    context.email.completar_email("")   #COLOCAR EL MAIL DENTRO DE LAS COMILLAS
     time.sleep(2)
     context.contrasena = Registro(context.driver)
-    context.contrasena.completar_contrasena("pedroluis1234")
+    context.contrasena.completar_contrasena("") #COLOCAR DENTRO DE LAS COMILLAS LA PASSWORD
     time.sleep(2)
     context.check_pass = Registro(context.driver)
-    context.check_pass.check_pass_usr("pedroluis1234")
+    context.check_pass.check_pass_usr("")#COLOCAR DENTRO DE LAS COMILLAS LA PASSWORD
     time.sleep(3)
 
 
@@ -370,16 +370,16 @@ def pagina_registrar(context):
 @when('el usuario completa los campos solicitados excepto el campo de email')
 def email_vacio(context):
     context.nombre = Registro(context.driver)
-    context.nombre.completar_nombre("pedro")
+    context.nombre.completar_nombre("") #COLOCAR EL NOMBRE DENTRO DE LAS COMILLAS
     time.sleep(2)
     context.email = Registro(context.driver)
-    context.email.completar_email("")
+    context.email.completar_email("") #DEJAR EL CAMPO VACIO
     time.sleep(2)
     context.contrasena = Registro(context.driver)
-    context.contrasena.completar_contrasena("pedroluis1234")
+    context.contrasena.completar_contrasena("") #COLOCAR PASSWORD EN COMILLAS
     time.sleep(2)
     context.check_pass = Registro(context.driver)
-    context.check_pass.check_pass_usr("pedroluis1234")
+    context.check_pass.check_pass_usr("") #COLOCAR PASSWORD EN COMILLAS
     time.sleep(3)
 
 
